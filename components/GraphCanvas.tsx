@@ -364,7 +364,7 @@ export default function GraphCanvas({
           transformStart.current.y + (e.clientY - dragStart.current.y);
         draw();
       } else {
-        const n = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+        const n: any = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
         const newHov = n ? n.id : null;
         onHover(newHov);
         canvas.style.cursor = newHov ? "pointer" : "grab";
@@ -377,7 +377,7 @@ export default function GraphCanvas({
       dragging.current = false;
       if (moved < 5) {
         const rect = canvas.getBoundingClientRect();
-        const n = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
+        const n:any = getNodeAt(e.clientX - rect.left, e.clientY - rect.top);
         onSelect(n ? n.id : null);
       }
     };
