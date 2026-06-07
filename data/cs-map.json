@@ -1,0 +1,873 @@
+{
+  "meta": {
+    "title": "Computer Science Knowledge Map",
+    "titleRO": "Harta Cunoașterii în Informatică",
+    "source": "Based on Denning (2005), ACM/IEEE CS2023 Curriculum, and UVT FMI study programs",
+    "year": 2023,
+    "institution": "West University of Timișoara — Faculty of Mathematics & Computer Science",
+    "institutionRO": "Universitatea de Vest din Timișoara — Facultatea de Matematică și Informatică"
+  },
+  "clusters": [
+    { "id": "core",            "label": "Core CS",          "labelRO": "Informatică de Bază", "color": "#534AB7" },
+    { "id": "systems",         "label": "Systems",          "labelRO": "Sisteme",             "color": "#0F6E56" },
+    { "id": "data",            "label": "Data",             "labelRO": "Date",                "color": "#854F0B" },
+    { "id": "intelligence",    "label": "AI / ML",          "labelRO": "IA / ML",             "color": "#993556" },
+    { "id": "engineering",     "label": "Engineering",      "labelRO": "Inginerie",           "color": "#185FA5" },
+    { "id": "interdisciplinary","label":"Interdisciplinary","labelRO": "Interdisciplinar",    "color": "#3B6D11" },
+    { "id": "uvt",             "label": "UVT Local",        "labelRO": "Local UVT",           "color": "#042C53" }
+  ],
+  "nodes": [
+    {
+      "id": "AL",
+      "label": "Algorithms &\nData Structures",
+      "labelRO": "Algoritmi &\nStructuri de Date",
+      "x": 340, "y": 200, "r": 38,
+      "color": "#534AB7", "textColor": "#ffffff",
+      "cluster": "core",
+      "activities": ["theory", "design"],
+      "tagline": "The mathematical backbone of computation",
+      "taglineRO": "Coloana vertebrală matematică a calculului",
+      "connections": [
+        { "to": "PL",   "type": "foundational" },
+        { "to": "SEng", "type": "applies"       },
+        { "to": "AI",   "type": "uses"          },
+        { "to": "DB",   "type": "uses"          },
+        { "to": "TCS",  "type": "grounded_in"   }
+      ],
+      "problems": [
+        {
+          "title": "Sorting in linear time",
+          "open": false,
+          "example": "Radix sort, counting sort — optimal for restricted (integer) inputs"
+        },
+        {
+          "title": "P vs NP",
+          "open": true,
+          "example": "Is every problem whose solution is verifiable in polynomial time also solvable in poly time? The central open problem of computer science."
+        },
+        {
+          "title": "Optimal all-pairs shortest paths",
+          "open": true,
+          "example": "Can APSP be solved faster than O(n³)? Tight bounds remain unknown."
+        }
+      ],
+      "people": ["Donald Knuth", "Edsger Dijkstra", "Robert Tarjan", "Jon Kleinberg", "Éva Tardos", "Thomas Cormen"],
+      "venues": ["STOC", "FOCS", "ESA", "ACM TALG", "Algorithmica", "Journal of the ACM"],
+      "uvt": "Taught across all bachelor years as Fundamentele Informaticii and Analiza Algoritmilor. Research in combinatorial optimization by FMI faculty.",
+      "uvtRO": "Predată în toți anii la Fundamentele Informaticii și Analiza Algoritmilor. Cercetare în optimizare combinatorică la FMI-UVT.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "TCS",
+      "label": "Theory of\nComputation",
+      "labelRO": "Teoria\nCalculabilității",
+      "x": 175, "y": 105, "r": 30,
+      "color": "#3C3489", "textColor": "#ffffff",
+      "cluster": "core",
+      "activities": ["theory"],
+      "tagline": "What can and cannot be computed",
+      "taglineRO": "Ce poate și ce nu poate fi calculat",
+      "connections": [
+        { "to": "AL",     "type": "foundational" },
+        { "to": "PL",     "type": "foundational" },
+        { "to": "Crypto", "type": "foundational" }
+      ],
+      "problems": [
+        {
+          "title": "Halting problem",
+          "open": false,
+          "example": "Turing (1936) proved no algorithm can decide if an arbitrary program halts on a given input."
+        },
+        {
+          "title": "Circuit complexity lower bounds",
+          "open": true,
+          "example": "Can we prove SAT requires super-polynomial-size circuits? Decades of effort, no resolution."
+        },
+        {
+          "title": "Descriptive complexity",
+          "open": true,
+          "example": "Which logics exactly capture P, NL, PSPACE? FO+LFP = P on ordered structures (Immerman-Vardi), but unordered case open."
+        }
+      ],
+      "people": ["Alan Turing", "Alonzo Church", "Stephen Cook", "Leonid Levin", "Michael Sipser", "Christos Papadimitriou"],
+      "venues": ["Computational Complexity Conference (CCC)", "STOC", "FOCS", "Theoretical Computer Science", "Information & Computation"],
+      "uvt": "Covered in Limbaje Formale și Automate and Calculabilitate și Complexitate courses at FMI-UVT.",
+      "uvtRO": "Acoperit în cursurile Limbaje Formale și Automate și Calculabilitate și Complexitate la FMI-UVT.",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "PL",
+      "label": "Programming\nLanguages",
+      "labelRO": "Limbaje de\nProgramare",
+      "x": 155, "y": 265, "r": 32,
+      "color": "#185FA5", "textColor": "#ffffff",
+      "cluster": "core",
+      "activities": ["theory", "design"],
+      "tagline": "Design and formal semantics of languages",
+      "taglineRO": "Proiectarea și semantica formală a limbajelor",
+      "connections": [
+        { "to": "AL",   "type": "uses"         },
+        { "to": "TCS",  "type": "grounded_in"  },
+        { "to": "SEng", "type": "foundational" },
+        { "to": "OS",   "type": "interacts"    }
+      ],
+      "problems": [
+        {
+          "title": "Type inference scalability",
+          "open": true,
+          "example": "Hindley-Milner inference is EXPTIME in pathological cases; practical type systems trade completeness for speed."
+        },
+        {
+          "title": "Verified compilation",
+          "open": true,
+          "example": "CompCert formally verifies a C compiler; extending this to full modern optimizing compilers remains open."
+        },
+        {
+          "title": "Algebraic effects as a unified model",
+          "open": true,
+          "example": "Can algebraic effects + handlers cleanly replace monads, exceptions, async/await, and continuations?"
+        }
+      ],
+      "people": ["John McCarthy", "Barbara Liskov", "Robin Milner", "Simon Peyton Jones", "Niklaus Wirth", "Philip Wadler"],
+      "venues": ["POPL", "PLDI", "ICFP", "Journal of Functional Programming", "ACM TOPLAS"],
+      "uvt": "Courses: Programare Orientată Obiect (Java/C++), Programare Funcțională (Haskell), Semantica Limbajelor de Programare.",
+      "uvtRO": "Cursuri: POO (Java/C++), Programare Funcțională (Haskell), Semantica Limbajelor de Programare.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "OS",
+      "label": "Operating\nSystems",
+      "labelRO": "Sisteme de\nOperare",
+      "x": 195, "y": 385, "r": 30,
+      "color": "#0F6E56", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["design", "experiment"],
+      "tagline": "Resource management and process abstraction",
+      "taglineRO": "Gestionarea resurselor și abstractizarea proceselor",
+      "connections": [
+        { "to": "Arch", "type": "interacts"    },
+        { "to": "PL",   "type": "uses"         },
+        { "to": "Net",  "type": "foundational" },
+        { "to": "Sec",  "type": "foundational" }
+      ],
+      "problems": [
+        {
+          "title": "Schedulability analysis",
+          "open": false,
+          "example": "Earliest Deadline First (EDF) is optimal for preemptive uniprocessors — proven by Liu & Layland 1973."
+        },
+        {
+          "title": "OS for heterogeneous hardware",
+          "open": true,
+          "example": "Managing GPUs, NPUs, FPGAs, and CPUs with incompatible memory models in a single kernel is unsolved."
+        },
+        {
+          "title": "Full OS formal verification",
+          "open": true,
+          "example": "seL4 is formally verified; extending this to a full POSIX-compliant Linux-like kernel remains a grand challenge."
+        }
+      ],
+      "people": ["Edsger Dijkstra", "Dennis Ritchie", "Ken Thompson", "Andrew Tanenbaum", "Butler Lampson", "Linus Torvalds"],
+      "venues": ["SOSP", "OSDI", "EuroSys", "USENIX ATC", "ACM TOCS"],
+      "uvt": "Sisteme de Operare course with Linux kernel labs covering process scheduling, memory management, and IPC.",
+      "uvtRO": "Curs Sisteme de Operare cu laboratoare pe kernel Linux: planificarea proceselor, gestionarea memoriei, IPC.",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "Arch",
+      "label": "Computer\nArchitecture",
+      "labelRO": "Arhitectura\nCalculatoarelor",
+      "x": 88, "y": 385, "r": 28,
+      "color": "#3B6D11", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["design", "experiment"],
+      "tagline": "Hardware-software interface design",
+      "taglineRO": "Interfața hardware-software",
+      "connections": [
+        { "to": "OS",  "type": "foundational" },
+        { "to": "HPC", "type": "enables"      }
+      ],
+      "problems": [
+        {
+          "title": "Memory wall",
+          "open": false,
+          "example": "Bandwidth growing slower than compute — addressed (not fully solved) by cache hierarchies and NUMA."
+        },
+        {
+          "title": "Post-Moore scaling",
+          "open": true,
+          "example": "Beyond CMOS: optical, neuromorphic, and quantum computing — none yet match silicon at scale."
+        },
+        {
+          "title": "Microarchitectural security",
+          "open": true,
+          "example": "Spectre/Meltdown: speculative execution creates side-channel leaks; no complete hardware fix exists."
+        }
+      ],
+      "people": ["John von Neumann", "Gordon Bell", "David Patterson", "John Hennessy", "Jim Gray"],
+      "venues": ["ISCA", "MICRO", "HPCA", "IEEE Micro", "CACM"],
+      "uvt": "Arhitectura Calculatoarelor course including digital logic labs and assembly programming.",
+      "uvtRO": "Curs Arhitectura Calculatoarelor cu laboratoare de logică digitală și programare în asamblare.",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "Net",
+      "label": "Computer\nNetworks",
+      "labelRO": "Rețele de\nCalculatoare",
+      "x": 85, "y": 505, "r": 28,
+      "color": "#185FA5", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["design", "experiment"],
+      "tagline": "Protocols for distributed communication",
+      "taglineRO": "Protocoale pentru comunicare distribuită",
+      "connections": [
+        { "to": "OS",   "type": "uses"         },
+        { "to": "Sec",  "type": "interacts"    },
+        { "to": "Dist", "type": "foundational" }
+      ],
+      "problems": [
+        {
+          "title": "BGP routing security",
+          "open": true,
+          "example": "BGP hijacking attacks persist; RPKI deployment helps but is far from universal."
+        },
+        {
+          "title": "Named data networking (NDN)",
+          "open": true,
+          "example": "Can we replace IP host-addressing with content-centric addressing for better caching and security?"
+        },
+        {
+          "title": "Zero-trust network architecture",
+          "open": true,
+          "example": "No implicit trust zone; every packet verified — implementation at scale is an open engineering problem."
+        }
+      ],
+      "people": ["Vint Cerf", "Bob Kahn", "Tim Berners-Lee", "Van Jacobson", "Jennifer Rexford", "Sally Floyd"],
+      "venues": ["SIGCOMM", "IMC", "NSDI", "IEEE/ACM ToN", "CoNEXT"],
+      "uvt": "Rețele de Calculatoare course with Wireshark, TCP/IP stack labs, and socket programming.",
+      "uvtRO": "Curs Rețele de Calculatoare cu laboratoare Wireshark, TCP/IP și programare socket.",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "Sec",
+      "label": "Security &\nCryptography",
+      "labelRO": "Securitate &\nCriptografie",
+      "x": 195, "y": 505, "r": 32,
+      "color": "#993C1D", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["theory", "design", "experiment"],
+      "tagline": "Confidentiality, integrity, and availability",
+      "taglineRO": "Confidențialitate, integritate și disponibilitate",
+      "connections": [
+        { "to": "Net",    "type": "protects"      },
+        { "to": "OS",     "type": "enforces"      },
+        { "to": "Crypto", "type": "uses"          },
+        { "to": "AI",     "type": "bidirectional" }
+      ],
+      "problems": [
+        {
+          "title": "Post-quantum migration",
+          "open": true,
+          "example": "NIST finalized CRYSTALS-Kyber/Dilithium in 2024; migrating the internet's PKI is a decade-long open engineering effort."
+        },
+        {
+          "title": "LLM-assisted vulnerability discovery",
+          "open": true,
+          "example": "AI finds real bugs (e.g., Google Project Zero + GPT-4); false-positive rate and completeness are open."
+        },
+        {
+          "title": "Homomorphic encryption at practical speed",
+          "open": true,
+          "example": "FHE allows compute on encrypted data but remains ~10⁶× slower than plaintext computation."
+        }
+      ],
+      "people": ["Whitfield Diffie", "Martin Hellman", "Bruce Schneier", "Adi Shamir", "Mihail Blaze", "Dan Boneh"],
+      "venues": ["IEEE S&P (Oakland)", "ACM CCS", "USENIX Security", "CRYPTO", "Eurocrypt"],
+      "uvt": "Securitatea Sistemelor Informatice course; CTF competitions; cryptography elective track.",
+      "uvtRO": "Curs Securitatea Sistemelor Informatice; competiții CTF; pistă opțională de criptografie.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "Crypto",
+      "label": "Cryptography",
+      "labelRO": "Criptografie",
+      "x": 100, "y": 615, "r": 24,
+      "color": "#712B13", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["theory", "design"],
+      "tagline": "Mathematical foundations of security",
+      "taglineRO": "Fundamente matematice ale securității",
+      "connections": [
+        { "to": "Sec", "type": "foundational" },
+        { "to": "TCS", "type": "grounded_in"  }
+      ],
+      "problems": [
+        {
+          "title": "Random oracle model limitations",
+          "open": true,
+          "example": "Many schemes proven secure only in the ROM (not the standard model); gap between models and practice."
+        },
+        {
+          "title": "Quantum-safe zero-knowledge proofs",
+          "open": true,
+          "example": "STARKs are plausibly quantum-safe; most SNARKs rely on discrete log — migration path is open."
+        }
+      ],
+      "people": ["Silvio Micali", "Shafi Goldwasser", "Oded Goldreich", "Dan Boneh", "Phong Nguyen", "Eli Ben-Sasson"],
+      "venues": ["CRYPTO", "Eurocrypt", "Asiacrypt", "Journal of Cryptology", "TCC"],
+      "uvt": "Elective in the Mathematics-Computer Science track; ties to FMI mathematics department.",
+      "uvtRO": "Disciplină opțională în traseul Matematică-Informatică; legătură cu departamentul de matematică FMI.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "DB",
+      "label": "Databases &\nData Engineering",
+      "labelRO": "Baze de Date &\nIngineria Datelor",
+      "x": 340, "y": 375, "r": 32,
+      "color": "#854F0B", "textColor": "#ffffff",
+      "cluster": "data",
+      "activities": ["design", "experiment"],
+      "tagline": "Storing, querying, and managing data at scale",
+      "taglineRO": "Stocare, interogare și gestionare a datelor la scară",
+      "connections": [
+        { "to": "AL",   "type": "uses"      },
+        { "to": "Dist", "type": "interacts" },
+        { "to": "AI",   "type": "feeds"     },
+        { "to": "SEng", "type": "part_of"   }
+      ],
+      "problems": [
+        {
+          "title": "ACID vs. BASE tradeoff",
+          "open": false,
+          "example": "CAP theorem (Brewer 2000, proved by Gilbert & Lynch 2002): choose at most 2 of Consistency, Availability, Partition-tolerance."
+        },
+        {
+          "title": "Learned index structures",
+          "open": true,
+          "example": "Replacing B-trees with trained models for read workloads is promising; efficient updates remain open."
+        },
+        {
+          "title": "Differential privacy for SQL at scale",
+          "open": true,
+          "example": "DP-SQL systems (e.g., PINQ, Tumult Analytics) struggle with complex join queries and tight budgets."
+        }
+      ],
+      "people": ["Edgar F. Codd", "Jim Gray", "Michael Stonebraker", "Joe Hellerstein", "David Maier", "Rakesh Agrawal"],
+      "venues": ["SIGMOD", "VLDB", "ICDE", "PVLDB", "ACM TODS"],
+      "uvt": "Baze de Date I & II courses with PostgreSQL and MongoDB labs; project-based learning with real datasets.",
+      "uvtRO": "Cursuri Baze de Date I & II cu laboratoare PostgreSQL și MongoDB; proiecte cu seturi de date reale.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "AI",
+      "label": "Artificial\nIntelligence",
+      "labelRO": "Inteligență\nArtificială",
+      "x": 490, "y": 200, "r": 38,
+      "color": "#993556", "textColor": "#ffffff",
+      "cluster": "intelligence",
+      "activities": ["theory", "design", "experiment"],
+      "tagline": "Reasoning, learning, perception, and action",
+      "taglineRO": "Raționament, învățare, percepție și acțiune",
+      "connections": [
+        { "to": "ML",  "type": "foundational" },
+        { "to": "AL",  "type": "uses"         },
+        { "to": "DB",  "type": "uses"         },
+        { "to": "HCI", "type": "produces"     },
+        { "to": "Sec", "type": "bidirectional"}
+      ],
+      "problems": [
+        {
+          "title": "AI alignment & safety",
+          "open": true,
+          "example": "How to ensure LLMs and autonomous agents reliably act according to human values at scale? No formal solution."
+        },
+        {
+          "title": "Grounded factual reasoning",
+          "open": true,
+          "example": "LLMs hallucinate confidently; combining neural generation with verified knowledge retrieval is unsolved."
+        },
+        {
+          "title": "Sample efficiency",
+          "open": true,
+          "example": "Humans learn a concept from ~10 examples; state-of-the-art vision models need millions. The gap is a fundamental open problem."
+        }
+      ],
+      "people": ["John McCarthy", "Marvin Minsky", "Geoffrey Hinton", "Yann LeCun", "Yoshua Bengio", "Stuart Russell"],
+      "venues": ["NeurIPS", "ICML", "AAAI", "IJCAI", "JAIR", "Artificial Intelligence"],
+      "uvt": "Inteligență Artificială course (year 3 bachelor); ML electives; active research lab at FMI-UVT with EU-funded projects.",
+      "uvtRO": "Curs Inteligență Artificială (an 3 licență); opționale ML; laborator de cercetare activ la FMI-UVT cu proiecte UE.",
+      "studyLevel": ["bachelor", "master", "phd"]
+    },
+    {
+      "id": "ML",
+      "label": "Machine\nLearning",
+      "labelRO": "Învățare\nAutomată",
+      "x": 580, "y": 305, "r": 34,
+      "color": "#D4537E", "textColor": "#ffffff",
+      "cluster": "intelligence",
+      "activities": ["theory", "experiment", "design"],
+      "tagline": "Learning patterns from data",
+      "taglineRO": "Învățarea tiparelor din date",
+      "connections": [
+        { "to": "AI",  "type": "specializes" },
+        { "to": "DB",  "type": "uses"        },
+        { "to": "HPC", "type": "requires"    },
+        { "to": "Vis", "type": "produces"    }
+      ],
+      "problems": [
+        {
+          "title": "Generalization of overparameterized models",
+          "open": true,
+          "example": "Double descent: models with far more parameters than data generalize well — contradicts classical bias-variance theory."
+        },
+        {
+          "title": "Mechanistic interpretability",
+          "open": true,
+          "example": "What circuits in a transformer implement factual recall? Anthropic's work is early; full understanding is far off."
+        },
+        {
+          "title": "Algorithmic fairness and bias",
+          "open": true,
+          "example": "Satisfying multiple fairness criteria simultaneously is provably impossible (Chouldechova 2017); tradeoffs are unsolved."
+        }
+      ],
+      "people": ["Vladimir Vapnik", "Judea Pearl", "Ian Goodfellow", "Andrej Karpathy", "Percy Liang", "Ilya Sutskever"],
+      "venues": ["NeurIPS", "ICML", "ICLR", "JMLR", "MLSys"],
+      "uvt": "Machine Learning course and Deep Learning elective; GPU cluster available for thesis projects at FMI-UVT.",
+      "uvtRO": "Curs Machine Learning și Deep Learning opțional; cluster GPU disponibil pentru lucrări de licență/master la FMI.",
+      "studyLevel": ["master", "phd"]
+    },
+    {
+      "id": "SEng",
+      "label": "Software\nEngineering",
+      "labelRO": "Inginerie\nSoftware",
+      "x": 340, "y": 88, "r": 32,
+      "color": "#0F6E56", "textColor": "#ffffff",
+      "cluster": "engineering",
+      "activities": ["design", "experiment"],
+      "tagline": "Processes and methods for building software",
+      "taglineRO": "Procese și metode pentru construirea software-ului",
+      "connections": [
+        { "to": "AL",   "type": "applies"  },
+        { "to": "PL",   "type": "uses"     },
+        { "to": "DB",   "type": "uses"     },
+        { "to": "HCI",  "type": "produces" }
+      ],
+      "problems": [
+        {
+          "title": "Technical debt quantification",
+          "open": true,
+          "example": "No agreed metric for 'how messy is this codebase'; SonarQube approximates but lacks theoretical grounding."
+        },
+        {
+          "title": "AI-assisted development correctness",
+          "open": true,
+          "example": "GitHub Copilot generates plausible but buggy/insecure code ~40% of the time; correctness guarantees are open."
+        },
+        {
+          "title": "Formal specs in industrial practice",
+          "open": true,
+          "example": "TLA+/Dafny help catch bugs (used at AWS); adoption barriers in standard industry practice remain large."
+        }
+      ],
+      "people": ["Fred Brooks", "Watts Humphrey", "Grady Booch", "Kent Beck", "Mary Shaw", "David Parnas"],
+      "venues": ["ICSE", "FSE/ESEC", "ASE", "IEEE TSE", "Empirical Software Engineering"],
+      "uvt": "Ingineria Programării and Software Engineering courses with Agile project labs and team-based development.",
+      "uvtRO": "Cursuri Ingineria Programării cu laboratoare Agile și proiecte de echipă.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "HCI",
+      "label": "Human-Computer\nInteraction",
+      "labelRO": "Interacțiune\nOm-Calculator",
+      "x": 490, "y": 88, "r": 28,
+      "color": "#639922", "textColor": "#ffffff",
+      "cluster": "engineering",
+      "activities": ["design", "experiment"],
+      "tagline": "Designing for human use and experience",
+      "taglineRO": "Proiectare pentru utilizare umană și experiență",
+      "connections": [
+        { "to": "SEng", "type": "informs"      },
+        { "to": "AI",   "type": "augmented_by" },
+        { "to": "Vis",  "type": "uses"         }
+      ],
+      "problems": [
+        {
+          "title": "Explainable AI for lay users",
+          "open": true,
+          "example": "How to communicate model uncertainty and reasoning to non-experts without overwhelming or misleading them?"
+        },
+        {
+          "title": "Accessibility automation",
+          "open": true,
+          "example": "Auto-generated alt-text, real-time captions, screen-reader AI — quality still far below human experts."
+        },
+        {
+          "title": "Persuasive design ethics",
+          "open": true,
+          "example": "Dark patterns and attention economy mechanisms are well-documented but no legal/technical standard stops them."
+        }
+      ],
+      "people": ["Doug Engelbart", "Ben Shneiderman", "Don Norman", "Bill Buxton", "Joanna McGrenere", "Wendy Mackay"],
+      "venues": ["ACM CHI", "UIST", "CSCW", "ITS", "Interacting with Computers"],
+      "uvt": "HCI elective course; UX design projects; accessibility research group at FMI-UVT.",
+      "uvtRO": "Curs opțional HCI; proiecte UX; grup de cercetare accesibilitate la FMI-UVT.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "Dist",
+      "label": "Distributed\nSystems",
+      "labelRO": "Sisteme\nDistribuite",
+      "x": 195, "y": 615, "r": 30,
+      "color": "#0C447C", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["theory", "design", "experiment"],
+      "tagline": "Coordination across networked nodes",
+      "taglineRO": "Coordonare în rețele de noduri",
+      "connections": [
+        { "to": "Net",   "type": "builds_on"   },
+        { "to": "DB",    "type": "enables"     },
+        { "to": "Cloud", "type": "foundational"},
+        { "to": "Sec",   "type": "requires"    }
+      ],
+      "problems": [
+        {
+          "title": "Consensus in asynchronous networks",
+          "open": false,
+          "example": "FLP impossibility (Fischer-Lynch-Paterson 1985): no deterministic consensus in fully async networks with even one failure."
+        },
+        {
+          "title": "Geo-distributed global consistency",
+          "open": true,
+          "example": "Google Spanner uses atomic clocks (TrueTime); achieving tight consistency without GPS/atomic clocks is open."
+        },
+        {
+          "title": "BFT at internet scale",
+          "open": true,
+          "example": "Byzantine fault-tolerant blockchains achieve either low throughput or weak security — no system achieves both."
+        }
+      ],
+      "people": ["Leslie Lamport", "Nancy Lynch", "Butler Lampson", "Mike Burrows", "Matei Zaharia", "Ion Stoica"],
+      "venues": ["SOSP", "OSDI", "NSDI", "PODC", "DISC"],
+      "uvt": "Sisteme Distribuite course with cloud and Docker/Kubernetes lab exercises at FMI-UVT.",
+      "uvtRO": "Curs Sisteme Distribuite cu laboratoare cloud și Docker/Kubernetes la FMI-UVT.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "Cloud",
+      "label": "Cloud &\nDevOps",
+      "labelRO": "Cloud &\nDevOps",
+      "x": 88, "y": 710, "r": 26,
+      "color": "#3B8BD4", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["design", "experiment"],
+      "tagline": "Infrastructure as code; continuous delivery",
+      "taglineRO": "Infrastructură ca și cod; livrare continuă",
+      "connections": [
+        { "to": "Dist", "type": "built_on"    },
+        { "to": "SEng", "type": "practiced_in"}
+      ],
+      "problems": [
+        {
+          "title": "Multi-cloud portability",
+          "open": true,
+          "example": "Vendor lock-in to AWS/Azure/GCP abstractions (Lambda, BigQuery, etc.) — no neutral portability standard."
+        },
+        {
+          "title": "FinOps cost prediction",
+          "open": true,
+          "example": "Right-sizing cloud spend dynamically; autoscaling policies that minimize cost without SLA violations."
+        }
+      ],
+      "people": ["Werner Vogels", "Pat Helland", "James Hamilton", "Brendan Gregg", "Kelsey Hightower"],
+      "venues": ["SREcon", "KubeCon", "USENIX ATC", "OSDI", "AWS re:Invent"],
+      "uvt": "Cloud Computing elective; AWS Academy partnership at UVT; Docker/K8s practical track.",
+      "uvtRO": "Opțional Cloud Computing; parteneriat AWS Academy la UVT; pistă practică Docker/K8s.",
+      "studyLevel": ["master"]
+    },
+    {
+      "id": "HPC",
+      "label": "High-Performance\nComputing",
+      "labelRO": "Calcul de\nÎnaltă Performanță",
+      "x": 75, "y": 285, "r": 26,
+      "color": "#1D9E75", "textColor": "#ffffff",
+      "cluster": "systems",
+      "activities": ["design", "experiment"],
+      "tagline": "Parallel and supercomputing systems",
+      "taglineRO": "Calcul paralel și supercalculatoare",
+      "connections": [
+        { "to": "Arch", "type": "uses"       },
+        { "to": "ML",   "type": "enables"    },
+        { "to": "AL",   "type": "specializes"}
+      ],
+      "problems": [
+        {
+          "title": "Exascale programming models",
+          "open": true,
+          "example": "MPI+OpenMP vs PGAS vs task-based models (HPX, Legion) — no consensus model for post-petascale systems."
+        },
+        {
+          "title": "Floating-point reproducibility",
+          "open": true,
+          "example": "Non-determinism across MPI ranks and GPU threads makes scientific reproducibility a persistent challenge."
+        }
+      ],
+      "people": ["Jack Dongarra", "Satoshi Matsuoka", "Thomas Sterling", "Almadena Chtchelkanova", "Franck Cappello"],
+      "venues": ["SC (Supercomputing)", "ICS", "PPoPP", "Parallel Computing", "IJHPCA"],
+      "uvt": "Parallel and Distributed Computing course with MPI and OpenMP labs at FMI-UVT.",
+      "uvtRO": "Curs de Calcul Paralel și Distribuit cu laboratoare MPI și OpenMP la FMI-UVT.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "Vis",
+      "label": "Computer\nGraphics & Vis.",
+      "labelRO": "Grafică &\nVizualizare",
+      "x": 590, "y": 425, "r": 28,
+      "color": "#EF9F27", "textColor": "#ffffff",
+      "cluster": "intelligence",
+      "activities": ["design", "experiment", "theory"],
+      "tagline": "Rendering, modeling, and visual data analysis",
+      "taglineRO": "Randare, modelare și analiză vizuală a datelor",
+      "connections": [
+        { "to": "ML",  "type": "enhanced_by" },
+        { "to": "AL",  "type": "uses"        },
+        { "to": "HCI", "type": "feeds"       }
+      ],
+      "problems": [
+        {
+          "title": "Real-time path tracing",
+          "open": false,
+          "example": "NVIDIA RTX hardware ray tracing (2018) made interactive path tracing feasible at 60+ fps in modern games."
+        },
+        {
+          "title": "Neural radiance fields vs. Gaussian splatting",
+          "open": true,
+          "example": "NeRF → 3D Gaussian Splatting — quality vs. editability vs. speed tradeoffs remain unsettled."
+        },
+        {
+          "title": "Editable 3D scene reconstruction",
+          "open": true,
+          "example": "Reconstructing a fully editable, physics-consistent 3D scene from casually-captured photos is unsolved."
+        }
+      ],
+      "people": ["Jim Blinn", "Pat Hanrahan", "Marc Levoy", "Frédo Durand", "Olga Sorkine-Hornung", "Kayvon Fatahalian"],
+      "venues": ["SIGGRAPH", "SIGGRAPH Asia", "IEEE VIS", "EuroGraphics", "ACM TOG", "CGF"],
+      "uvt": "Grafică pe Calculator course with OpenGL and Unity labs; visualization research in scientific computing.",
+      "uvtRO": "Curs Grafică pe Calculator cu laboratoare OpenGL și Unity; cercetare în vizualizare pentru calcul științific.",
+      "studyLevel": ["bachelor", "master"]
+    },
+    {
+      "id": "Bio",
+      "label": "Bioinformatics\n& Comp. Biology",
+      "labelRO": "Bioinformatică\n& Bio. Computațională",
+      "x": 490, "y": 530, "r": 26,
+      "color": "#3B6D11", "textColor": "#ffffff",
+      "cluster": "interdisciplinary",
+      "activities": ["theory", "experiment", "design"],
+      "tagline": "Algorithms and models for biological data",
+      "taglineRO": "Algoritmi și modele pentru date biologice",
+      "connections": [
+        { "to": "AL", "type": "uses" },
+        { "to": "ML", "type": "uses" },
+        { "to": "DB", "type": "uses" }
+      ],
+      "problems": [
+        {
+          "title": "Protein structure prediction",
+          "open": false,
+          "example": "AlphaFold 2/3 solved single-chain folding with near-experimental accuracy; protein-protein binding prediction remains open."
+        },
+        {
+          "title": "Single-cell multi-omics integration",
+          "open": true,
+          "example": "Combining transcriptomics, proteomics, and epigenomics at single-cell resolution — alignment and batch effects unsolved."
+        },
+        {
+          "title": "Pangenomics scalability",
+          "open": true,
+          "example": "Reference graphs encoding all human genetic variation — graph alignment algorithms do not yet scale to full populations."
+        }
+      ],
+      "people": ["Eugene Myers", "David Haussler", "Serafim Batzoglou", "Bonnie Berger", "Inge Jonassen", "Eran Segal"],
+      "venues": ["ISMB", "RECOMB", "Bioinformatics", "PLOS Computational Biology", "Nature Methods"],
+      "uvt": "Interdisciplinary master track with UVT Faculty of Biology; bioinformatics courses and research projects.",
+      "uvtRO": "Traseu master interdisciplinar cu Facultatea de Biologie UVT; cursuri și proiecte de cercetare în bioinformatică.",
+      "studyLevel": ["master", "phd"]
+    },
+    {
+      "id": "UVT_FMI",
+      "label": "FMI-UVT\nFaculty",
+      "labelRO": "Facultatea FMI\nUVT",
+      "x": 340, "y": 545, "r": 36,
+      "color": "#042C53", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["design", "experiment", "theory"],
+      "tagline": "Faculty of Mathematics & Computer Science — West University of Timișoara",
+      "taglineRO": "Facultatea de Matematică și Informatică — Universitatea de Vest din Timișoara",
+      "connections": [
+        { "to": "AL",   "type": "teaches"    },
+        { "to": "AI",   "type": "researches" },
+        { "to": "SEng", "type": "teaches"    },
+        { "to": "DB",   "type": "teaches"    },
+        { "to": "Net",  "type": "teaches"    },
+        { "to": "OS",   "type": "teaches"    },
+        { "to": "Dist", "type": "teaches"    },
+        { "to": "ML",   "type": "researches" }
+      ],
+      "problems": [
+        {
+          "title": "Bridging research and local industry",
+          "open": true,
+          "example": "Collaboration with Timișoara tech cluster (Continental, Flextronics, Hella) — formalizing research transfer is ongoing."
+        },
+        {
+          "title": "International program growth",
+          "open": true,
+          "example": "English-track bachelor programs aim to attract EU Erasmus and fee-paying students; administrative barriers remain."
+        }
+      ],
+      "people": ["Dana Lupșa", "Cosmin Bonchiș", "Radu Găceanu", "Daniela Zaharie", "Adrian Sterca", "Petru Eles"],
+      "venues": ["SYNASC (annual, Timișoara)", "Studia Universitatis Babeș-Bolyai", "ACM student chapter Timișoara"],
+      "uvt": "Central hub of CS education and research at UVT. Offers bachelor, master, and PhD programs in Romanian and English.",
+      "uvtRO": "Nod central al educației și cercetării informatice la UVT. Oferă programe de licență, master și doctorat în română și engleză.",
+      "studyLevel": ["bachelor", "master", "phd"]
+    },
+    {
+      "id": "UVT_BACH_RO",
+      "label": "Bachelor CS\n(Romanian)",
+      "labelRO": "Licență\nInformatică (RO)",
+      "x": 195, "y": 700, "r": 26,
+      "color": "#0C447C", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["design"],
+      "tagline": "3-year CS bachelor program in Romanian",
+      "taglineRO": "Program de licență 3 ani Informatică, limba română",
+      "connections": [
+        { "to": "UVT_FMI", "type": "part_of" },
+        { "to": "AL",      "type": "covers"  },
+        { "to": "SEng",    "type": "covers"  }
+      ],
+      "problems": [
+        {
+          "title": "Curriculum-industry alignment lag",
+          "open": true,
+          "example": "New tools (LLMs, cloud-native, Rust) take ~2 years to enter official syllabi due to accreditation processes."
+        }
+      ],
+      "people": [],
+      "venues": ["FMI UVT", "CNATDCU (Romanian accreditation body)"],
+      "uvt": "240 ECTS, 3 years. Covers all ACM/IEEE core CS areas plus required mathematics (calculus, linear algebra, statistics).",
+      "uvtRO": "240 ECTS, 3 ani. Acoperă toate domeniile de bază CS (ACM/IEEE) plus matematică obligatorie (analiză, algebră, statistică).",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "UVT_BACH_EN",
+      "label": "Bachelor CS\n(English)",
+      "labelRO": "Licență\nInformatică (EN)",
+      "x": 370, "y": 700, "r": 26,
+      "color": "#185FA5", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["design"],
+      "tagline": "3-year CS bachelor program in English",
+      "taglineRO": "Program de licență 3 ani Informatică, limba engleză",
+      "connections": [
+        { "to": "UVT_FMI", "type": "part_of" },
+        { "to": "AL",      "type": "covers"  },
+        { "to": "Net",     "type": "covers"  }
+      ],
+      "problems": [
+        {
+          "title": "International student retention",
+          "open": true,
+          "example": "High first-year dropout rate for non-native English speakers without strong math background."
+        }
+      ],
+      "people": [],
+      "venues": ["FMI UVT", "Erasmus+ exchange partners"],
+      "uvt": "240 ECTS, 3 years, fully in English. Targets Erasmus, international, and bilingual Romanian students.",
+      "uvtRO": "240 ECTS, 3 ani, complet în engleză. Vizează studenți Erasmus, internaționali și români bilingvi.",
+      "studyLevel": ["bachelor"]
+    },
+    {
+      "id": "UVT_MAST",
+      "label": "Master CS\nPrograms",
+      "labelRO": "Master\nInformatică",
+      "x": 490, "y": 680, "r": 28,
+      "color": "#3C3489", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["design", "theory"],
+      "tagline": "Specialized 2-year master programs (RO & EN)",
+      "taglineRO": "Programe de master specializate de 2 ani (RO & EN)",
+      "connections": [
+        { "to": "UVT_FMI", "type": "part_of"    },
+        { "to": "AI",      "type": "specializes" },
+        { "to": "Sec",     "type": "specializes" },
+        { "to": "SEng",    "type": "specializes" },
+        { "to": "Bio",     "type": "specializes" }
+      ],
+      "problems": [
+        {
+          "title": "Research vs. professional track balance",
+          "open": true,
+          "example": "Master theses range from novel research contributions to applied projects — quality standardization is difficult."
+        }
+      ],
+      "people": [],
+      "venues": ["FMI UVT", "SYNASC", "local industry partners"],
+      "uvt": "Active programs: AI & Machine Learning, Software Engineering, Distributed Systems, Bioinformatics (RO and EN tracks).",
+      "uvtRO": "Programe active: IA & Machine Learning, Inginerie Software, Sisteme Distribuite, Bioinformatică (trasee RO și EN).",
+      "studyLevel": ["master"]
+    },
+    {
+      "id": "UVT_PHD",
+      "label": "PhD Program\nCS @ UVT",
+      "labelRO": "Doctorat\nInformatică UVT",
+      "x": 600, "y": 575, "r": 24,
+      "color": "#26215C", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["theory", "experiment"],
+      "tagline": "Research doctorate in computer science at UVT",
+      "taglineRO": "Doctorat în cercetare informatică la UVT",
+      "connections": [
+        { "to": "UVT_FMI", "type": "part_of"  },
+        { "to": "AI",      "type": "researches"},
+        { "to": "ML",      "type": "researches"},
+        { "to": "TCS",     "type": "researches"}
+      ],
+      "problems": [
+        {
+          "title": "Research funding sustainability",
+          "open": true,
+          "example": "Competitive grants via UEFISCDI and Horizon Europe; maintaining continuity between project cycles is challenging."
+        }
+      ],
+      "people": ["Daniela Zaharie (supervisor)", "Adrian Sterca (supervisor)", "Cosmin Bonchiș (supervisor)"],
+      "venues": ["SYNASC", "IEEE Timișoara section", "Horizon Europe consortia"],
+      "uvt": "PhD school at FMI-UVT; active research areas: AI/ML, distributed systems, formal methods, bioinformatics.",
+      "uvtRO": "Școala doctorală FMI-UVT; domenii de cercetare active: IA/ML, sisteme distribuite, metode formale, bioinformatică.",
+      "studyLevel": ["phd"]
+    },
+    {
+      "id": "SYNASC",
+      "label": "SYNASC\nConference",
+      "labelRO": "Conferința\nSYNASC",
+      "x": 600, "y": 465, "r": 22,
+      "color": "#444441", "textColor": "#ffffff",
+      "cluster": "uvt",
+      "activities": ["experiment", "theory"],
+      "tagline": "Symbolic & Numeric Algorithms for Scientific Computing — IEEE proceedings",
+      "taglineRO": "Algoritmi Simbolici și Numerici pentru Calcul Științific — proceedings IEEE",
+      "connections": [
+        { "to": "UVT_FMI", "type": "organized_by" },
+        { "to": "AI",      "type": "venue_for"    },
+        { "to": "TCS",     "type": "venue_for"    }
+      ],
+      "problems": [],
+      "people": ["Co-organized by FMI-UVT and RISC Linz (Austria)"],
+      "venues": ["SYNASC (annual, Timișoara, IEEE indexed)"],
+      "uvt": "Annual international conference co-organized by FMI-UVT since 1999. Covers symbolic computation, AI, distributed systems, and numerical methods.",
+      "uvtRO": "Conferință internațională anuală co-organizată de FMI-UVT din 1999. Acoperă calcul simbolic, IA, sisteme distribuite și metode numerice.",
+      "studyLevel": ["master", "phd"]
+    }
+  ]
+}
